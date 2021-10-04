@@ -17,5 +17,4 @@ public class Books {
     private int bookCounts;
     private String detail;
 
-    private String name;
 }
