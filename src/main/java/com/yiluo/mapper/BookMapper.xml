@@ -6,7 +6,7 @@
 <mapper namespace="com.yiluo.dao.BookMapper">
 
     <insert id="addBook" parameterType="Books">
-        insert into ssmbuild.books(bookName,bookCounts,detail)
+        insert into ssmbuild.books(bookName, bookCounts, detail)
         values (#{bookName}, #{bookCounts}, #{detail})
     </insert>
 
@@ -18,9 +18,11 @@
 
     <update id="updateBook" parameterType="Books">
         update books
-        set bookName=#{bookName}
-          , bookCounts=#{bookCounts}
-          , detail=#{detail}
+        <set>
+            <if test="bookName!=null">bookName=#{bookName},</if>
+            <if test="bookCounts!= null">bookCounts=#{bookCounts},</if>
+            <if test="detail!=null">detail=#{detail}</if>
+        </set>
         where bookId = #{bookId}
     </update>
 
